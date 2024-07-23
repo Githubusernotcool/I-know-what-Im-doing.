@@ -8,16 +8,11 @@ local bottomMiddle = script.Parent.bottomMiddle
 local bottomRight = script.Parent.bottomRight
 
 local debounce = false
-local Player = nil
-local char = nil
-local value = nil
-game.Players.PlayerAdded:Connect(function(player: Player) 
-	print("function acvtivae")
-	Player = player
-	char = Player.Character
-	value = Player.PlayerScripts.swordPosition
-	print(value)
-end)
+local Player = script.Parent.Parent.Parent
+local char = Player.Character
+local value = Player.PlayerScripts:FindFirstChild("swordPosition")
+print(topLeft)
+
 topLeft.MouseEnter:Connect(function(x: number, y: number)
 	if debounce == false then
 		value.Value = 1
@@ -120,5 +115,8 @@ bottomRight.MouseLeave:Connect(function(x: number, y: number)
 end)
 
 game.UserInputService.InputBegan:Connect(function(input: InputObject, gameProcessedEvent: boolean) 
-	print(input)
+
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		print("MOUSECLICEKD")
+	end
 end)
